@@ -41,17 +41,11 @@ Image = st.file_uploader("Upload your Image!!")
 if Image:
         st.image(Image)
 
-def APIConfig(ModelName):
-        if ModelName == "gemini-pro-vision":
-                genai.configure(api_key='AIzaSyBE1HLZuDQHbVz1C6MPD9FcvPbkeJqGrQU')
-                model = genai.GenerativeModel('gemini-pro-vision')
-                return model
-        elif ModelName == "GPT-4-vision-preview":
-                APIKey = st.text_input("Enter your GPT-4 API Key")
-                client = OpenAI(api_key = APIKey)
-                return client
+genai.configure(api_key='AIzaSyBE1HLZuDQHbVz1C6MPD9FcvPbkeJqGrQU')
+model = genai.GenerativeModel('gemini-pro-vision')
 
-model = APIConfig(ModelName)
+APIKey = st.text_input("Enter your GPT-4 API Key")
+client = OpenAI(api_key = APIKey)
 
 def Extractor(img, ModelName):
         if ModelName == "gemini-vision-pro":
@@ -63,7 +57,7 @@ def Extractor(img, ModelName):
                 btn = st.download_button(label = "Download File", data = response.text, file_name = "Files/New.tex")
         elif ModelName == "GPT-4-vision-preview":
                 #url = "https://i.ytimg.com/vi/fk81g5c6PNQ/maxresdefault.jpg"
-                response = model.chat.completions.create(
+                response = client.chat.completions.create(
                                 model="gpt-4-vision-preview",
                                 messages=[
                                   {
