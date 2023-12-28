@@ -29,16 +29,12 @@ st.markdown(hide_st_style, unsafe_allow_html = True)
 def to_markdown(text):
         text = text.replace('•', '  *')
         return textwrap.indent(text, '> ', predicate=lambda _: True)
-
-def encode_image(image_path):
-        with open(image_path, "rb") as image_file:
-                return base64.b64encode(image_file.read()).decode('utf-8')
     
 st.title("Math Formulae Extractor")
-st.write("Leverage the Power of Gemini and extract Maths Formulae from Images....")
+st.write("Leverage the Power of Gemini, GPT-4 and extract Maths Formulae from Images....")
 st.write("---")
 
-ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "GPT-4-vision-preview"))
+ModelName = st.selectbox("Select a Model", ("GPT-4-vision-preview", "gemini-pro-vision"))
 
 Image = st.file_uploader("Upload your Image!!")
 
