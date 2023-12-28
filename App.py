@@ -60,6 +60,7 @@ def Extractor(img, ModelName):
 
                 btn = st.download_button(label = "Download File", data = response.text, file_name = "Files/New.tex")
         elif ModelName == "GPT-4-vision-preview":
+                url = st.text_input("Enter Image URL")
                 response = model.chat.completions.create(
                                 model="gpt-4-vision-preview",
                                 messages=[
@@ -68,8 +69,10 @@ def Extractor(img, ModelName):
                                     "content": [
                                       {"type": "text", "text": "Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text."},
                                       {
-                                        "type": "image",
-                                        "image":img
+                                        "type": "image_url",
+                                        "image_url": {
+                                        "url": url,
+                                        },
                                       },
                                     ],
                                   }
