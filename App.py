@@ -29,17 +29,6 @@ st.markdown(hide_st_style, unsafe_allow_html = True)
 def to_markdown(text):
         text = text.replace('•', '  *')
         return textwrap.indent(text, '> ', predicate=lambda _: True)
-    
-st.title("Math Formulae Extractor")
-st.write("Leverage the Power of Gemini, GPT-4 and extract Maths Formulae from Images....")
-st.write("---")
-
-ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "gpt-4-vision-preview"))
-
-Image = st.file_uploader("Upload your Image!!")
-
-if Image:
-        st.image(Image)
 	
 def ChatGPT(Image):
 	buffer = io.BytesIO(Image.read())
@@ -66,22 +55,31 @@ def ChatGPT(Image):
 			],
 			max_tokens=300,
 		      )
-        	st.markdown(response.choices[0].message.content)
-        	btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "Files/New.tex")
+		st.markdown(response.choices[0].message.content)
+		btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "Files/New.tex")
 
 def GeminiAI(Image):
 	genai.configure(api_key='AIzaSyBE1HLZuDQHbVz1C6MPD9FcvPbkeJqGrQU')
-        model = genai.GenerativeModel('gemini-pro-vision')
+	model = genai.GenerativeModel('gemini-pro-vision')
 	image = PIL.Image.open(Image)
-        with st.spinner("We'r Almost there!!!"):
+	with st.spinner("We'r Almost there!!!"):
 		response = model.generate_content(["Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text.", img], stream=True)
                 response.resolve()
-
-                st.write(to_markdown(response.text))
-
-                btn = st.download_button(label = "Download File", data = response.text, file_name = "Files/New.tex")
+		
+		st.write(to_markdown(response.text))
+		btn = st.download_button(label = "Download File", data = response.text, file_name = "Files/New.tex")
 
 def main():
+	st.title("Math Formulae Extractor")
+	st.write("Leverage the Power of Gemini, GPT-4 and extract Maths Formulae from Images....")
+	st.write("---")
+	
+	ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "gpt-4-vision-preview"))
+	
+	Image = st.file_uploader("Upload your Image!!")
+	if Image:
+		st.image(Image)
+		S
 	if ModelName == "gpt-4-vision-preview" and Image:
 		ChatGPT(Image)
 	elif ModelName == "gemini-vision-pro" and Image:
