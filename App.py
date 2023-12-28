@@ -27,9 +27,9 @@ def to_markdown(text):
         return textwrap.indent(text, '> ', predicate=lambda _: True)
 
 st.title("Math Formulae Extractor")
+st.write("Leverage the Power of Gemini and extract Maths Formulae from Images....")
 st.write("---")
 
-st.write("Leverage the Power of Gemini and extract Maths Formulae from Images....")
 Image = st.file_uploader("Upload your Image!!")
 
 if Image:
