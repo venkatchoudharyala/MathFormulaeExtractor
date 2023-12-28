@@ -64,12 +64,11 @@ def GeminiAI(Image):
 	model = genai.GenerativeModel('gemini-pro-vision')
 	image = PIL.Image.open(Image)
 	if st.button("Extract"):
-		#with st.spinner("We'r Almost there!!!"):
-		response = model.generate_content(["Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text.", image], stream=True)
-		response.resolve()
-		
-		st.write(to_markdown(response.text))
-		btn = st.download_button(label = "Download File", data = response.text, file_name = "Files/New.tex")
+		with st.spinner("We'r Almost there!!!"):
+			response = model.generate_content(["Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text.", image], stream=True)
+			response.resolve()
+			st.write(to_markdown(response.text))
+			btn = st.download_button(label = "Download File", data = response.text, file_name = "Files/New.tex")
 
 def main():
 	st.title("Math Formulae Extractor")
