@@ -15,7 +15,7 @@ from openai import OpenAI
 
 import PIL.Image
 import base64
-import requests
+import io
 
 hide_st_style = """
                 <style>
@@ -77,7 +77,7 @@ def Extractor(img, ModelName):
                                       {
                                         "type": "image_url",
                                         "image_url": {
-                                        "url": f"data:image/jpeg;base64,{img}",
+                                        "url": img,
                                         },
                                       },
                                     ],
@@ -87,7 +87,12 @@ def Extractor(img, ModelName):
                               )
                 st.write(response.choices[0].message.content)
 if Image and st.button("Extract"):
-        img = PIL.Image.open(Image)
+        if ModelName == "gemini-vision-pro":
+                img = PIL.Image.open(Image)
+        elif ModelName == "GPT-4-vision-preview":
+                buffer = io.BytesIO(Image)
+                base64_encoded_image = base64.b64encode(buffer.read()).decode("utf-8")
+                img = f"data:image/jpeg;base64,{base64_encoded_image}"
 
         with st.spinner("We'r Almost there!!!"):
                 Extractor(img, ModelName)
