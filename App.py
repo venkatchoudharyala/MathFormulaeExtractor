@@ -79,7 +79,7 @@ def Extractor(img, ModelName):
                                 ],
                                 max_tokens=300,
                               )
-                st.write(response.choices[0])
+                st.write(response.choices[0].message.content)
 if Image and st.button("Extract"):
         img = PIL.Image.open(Image)
 
