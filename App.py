@@ -69,8 +69,7 @@ def Extractor(img, ModelName):
                                       {"type": "text", "text": "Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text."},
                                       {
                                         "type": "image",
-                                        "image":img,
-                                        },
+                                        "image":img
                                       },
                                     ],
                                   }
