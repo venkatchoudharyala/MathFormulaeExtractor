@@ -9,7 +9,6 @@ import google.generativeai as genai
 
 from IPython.display import display
 from IPython.display import Markdown
-import imageio as iio
 
 from openai import OpenAI
 
