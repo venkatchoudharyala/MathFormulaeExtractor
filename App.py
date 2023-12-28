@@ -14,6 +14,8 @@ import imageio as iio
 from openai import OpenAI
 
 import PIL.Image
+import base64
+import requests
 
 hide_st_style = """
                 <style>
@@ -28,6 +30,10 @@ def to_markdown(text):
         text = text.replace('•', '  *')
         return textwrap.indent(text, '> ', predicate=lambda _: True)
 
+def encode_image(image_path):
+        with open(image_path, "rb") as image_file:
+        return base64.b64encode(image_file.read()).decode('utf-8')
+    
 st.title("Math Formulae Extractor")
 st.write("Leverage the Power of Gemini and extract Maths Formulae from Images....")
 st.write("---")
@@ -60,7 +66,8 @@ def Extractor(img, ModelName):
 
                 btn = st.download_button(label = "Download File", data = response.text, file_name = "Files/New.tex")
         elif ModelName == "GPT-4-vision-preview":
-                url = "https://i.ytimg.com/vi/fk81g5c6PNQ/maxresdefault.jpg"
+                #url = "https://i.ytimg.com/vi/fk81g5c6PNQ/maxresdefault.jpg"
+                base64_image = encode_image(Image)
                 response = model.chat.completions.create(
                                 model="gpt-4-vision-preview",
                                 messages=[
@@ -71,7 +78,7 @@ def Extractor(img, ModelName):
                                       {
                                         "type": "image_url",
                                         "image_url": {
-                                        "url": url,
+                                        "url": f"data:image/jpeg;base64,{base64_image}",
                                         },
                                       },
                                     ],
