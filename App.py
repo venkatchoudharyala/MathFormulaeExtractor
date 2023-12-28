@@ -90,10 +90,13 @@ def Extractor(img, ModelName):
 if Image and st.button("Extract"):
         if ModelName == "gemini-vision-pro":
                 img = PIL.Image.open(Image)
+                with st.spinner("We'r Almost there!!!"):
+                        Extractor(img, ModelName)
         elif ModelName == "GPT-4-vision-preview":
                 buffer = io.BytesIO(Image.read())
                 base64_encoded_image = base64.b64encode(buffer.read()).decode("utf-8")
-                img = f"data:image/jpeg;base64,{base64_encoded_image}"
+                data = f"data:image/jpeg;base64,{base64_encoded_image}"
+                with st.spinner("We'r Almost there!!!"):
+                        Extractor(data, ModelName)
 
-        with st.spinner("We'r Almost there!!!"):
-                Extractor(img, ModelName)
+        
