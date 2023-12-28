@@ -60,7 +60,7 @@ def Extractor(img, ModelName):
 
                 btn = st.download_button(label = "Download File", data = response.text, file_name = "Files/New.tex")
         elif ModelName == "GPT-4-vision-preview":
-                response = client.chat.completions.create(
+                response = model.chat.completions.create(
                                 model="gpt-4-vision-preview",
                                 messages=[
                                   {
