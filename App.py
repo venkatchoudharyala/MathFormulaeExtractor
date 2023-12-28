@@ -67,7 +67,7 @@ def Extractor(img, ModelName):
                                   {
                                     "role": "user",
                                     "content": [
-                                      {"type": "text", "text": "Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text."},
+                                      {"type": "text", "text": "Hey Gemini, Extract Mathematical formulae only from this Image and convert that into LaTeX Text."},
                                       {
                                         "type": "image_url",
                                         "image_url": {
