@@ -55,7 +55,6 @@ model = API(ModelName)
 
 def Extractor(img, ModelName):
         if ModelName == "gemini-vision-pro":
-                st.write("Gemini extr")
                 response = model.generate_content(["Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text.", img], stream=True)
                 response.resolve()
 
@@ -86,10 +85,9 @@ def Extractor(img, ModelName):
                 btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "Files/New.tex")
 if Image and st.button("Extract"):
         if ModelName == "gemini-vision-pro":
-                st.write("Gemini")
-                img = PIL.Image.open(Image)
+                image = PIL.Image.open(Image)
                 with st.spinner("We'r Almost there!!!"):
-                        Extractor(img, ModelName)
+                        Extractor(image, ModelName)
         elif ModelName == "GPT-4-vision-preview":
                 buffer = io.BytesIO(Image.read())
                 base64_encoded_image = base64.b64encode(buffer.read()).decode("utf-8")
