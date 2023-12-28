@@ -6,4 +6,3 @@ cryptography
 imageio
 openai
 base64
-requests
