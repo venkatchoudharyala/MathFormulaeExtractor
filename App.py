@@ -38,7 +38,7 @@ st.title("Math Formulae Extractor")
 st.write("Leverage the Power of Gemini and extract Maths Formulae from Images....")
 st.write("---")
 
-ModelName = st.selectbox("Select a Model", ("GPT-4-vision-preview", "gemini-pro-vision"))
+ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "GPT-4-vision-preview"))
 
 Image = st.file_uploader("Upload your Image!!")
 
