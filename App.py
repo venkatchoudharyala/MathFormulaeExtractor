@@ -57,7 +57,7 @@ def ChatGPT(Image):
 					max_tokens=300,
 				      )
 				st.markdown(response.choices[0].message.content)
-				btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "Files/New.tex")
+				btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "MathPixie.tex")
 
 def GeminiAI(Image):
 	genai.configure(api_key='AIzaSyBE1HLZuDQHbVz1C6MPD9FcvPbkeJqGrQU')
@@ -68,7 +68,7 @@ def GeminiAI(Image):
 			response = model.generate_content(["Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text.", image], stream=True)
 			response.resolve()
 			st.write(to_markdown(response.text))
-			btn = st.download_button(label = "Download File", data = response.text, file_name = "Files/New.tex")
+			btn = st.download_button(label = "Download File", data = response.text, file_name = "MathPixie.tex")
 
 def main():
 	st.title("Math Formulae Extractor")
