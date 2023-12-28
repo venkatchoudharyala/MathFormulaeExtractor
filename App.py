@@ -44,7 +44,6 @@ Image = st.file_uploader("Upload your Image!!")
 
 if Image:
         st.image(Image)
-        img = PIL.Image.open(Image)
 
 def APIConfig(ModelName):
         if ModelName == "gemini-pro-vision":
@@ -90,6 +89,7 @@ def Extractor(img, ModelName):
                 btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "Files/New.tex")
 if Image and st.button("Extract"):
         if ModelName == "gemini-vision-pro":
+                img = PIL.Image.open(Image)
                 with st.spinner("We'r Almost there!!!"):
                         Extractor(img, ModelName)
         elif ModelName == "GPT-4-vision-preview":
