@@ -59,7 +59,6 @@ def ChatGPT(Image):
 			btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "Files/New.tex")
 
 def GeminiAI(Image):
-	st.write("IN")
 	genai.configure(api_key='AIzaSyBE1HLZuDQHbVz1C6MPD9FcvPbkeJqGrQU')
 	model = genai.GenerativeModel('gemini-pro-vision')
 	image = PIL.Image.open(Image)
