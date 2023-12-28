@@ -29,7 +29,7 @@ def to_markdown(text):
 st.title("Math Formulae Extractor")
 st.write("---")
 
-st.subheader("Leverage the Power of Gemini and extract Maths Formulae from Images....")
+st.write("Leverage the Power of Gemini and extract Maths Formulae from Images....")
 Image = st.file_uploader("Upload your Image!!")
 
 if Image:
