@@ -42,11 +42,11 @@ if Image:
         st.image(Image)
 
 def API(ModelName):
-        if ModelName == "gemini-vision-pro"
+        if ModelName == "gemini-vision-pro":
                 genai.configure(api_key='AIzaSyBE1HLZuDQHbVz1C6MPD9FcvPbkeJqGrQU')
                 model = genai.GenerativeModel('gemini-pro-vision')
                 return model
-        elif ModelName == "GPT-4-vision-preview"
+        elif ModelName == "GPT-4-vision-preview":
                 APIKey = st.text_input("Enter your GPT-4 API Key")
                 client = OpenAI(api_key = APIKey)
                 return client
