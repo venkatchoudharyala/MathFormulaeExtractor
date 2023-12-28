@@ -84,7 +84,7 @@ def Extractor(img, ModelName):
                 st.markdown(response.choices[0].message.content)
                 btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "Files/New.tex")
 if Image and st.button("Extract"):
-        if ModelName == "gemini-vision-pro":
+        if ModelName == "gemini-pro-vision":
                 image = PIL.Image.open(Image)
                 with st.spinner("We'r Almost there!!!"):
                         Extractor(image, ModelName)
