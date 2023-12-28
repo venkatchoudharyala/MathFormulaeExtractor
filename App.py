@@ -1,5 +1,7 @@
 import streamlit as st
 
+import os
+
 import pathlib
 import textwrap
 
@@ -10,12 +12,26 @@ from IPython.display import Markdown
 
 import PIL.Image
 
+hide_st_style = """
+                <style>
+                header {visibility: hidden;}
+                footer {visibility: hidden;}
+                </style>
+                """
+
+st.markdown(hide_st_style, unsafe_allow_html = True)
+
 def to_markdown(text):
         text = text.replace('•', '  *')
         return textwrap.indent(text, '> ', predicate=lambda _: True)
 
 st.title("Math Formulae Extractor")
 st.write("---")
+
+ImgList = os.listdir("TestImages")
+ImgPath = st.selectbox("Images", ImgList)
+if ImgPath and st.checkbox("Use Example Images", value = False):
+        Image = "TestImages/" + ImgPath
 
 Image = st.file_uploader("Upload your Image!!")
 if Image:
