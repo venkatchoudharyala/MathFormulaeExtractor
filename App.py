@@ -90,7 +90,7 @@ if Image and st.button("Extract"):
         if ModelName == "gemini-vision-pro":
                 img = PIL.Image.open(Image)
         elif ModelName == "GPT-4-vision-preview":
-                buffer = io.BytesIO(Image)
+                buffer = io.BytesIO(Image.read())
                 base64_encoded_image = base64.b64encode(buffer.read()).decode("utf-8")
                 img = f"data:image/jpeg;base64,{base64_encoded_image}"
 
