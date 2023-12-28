@@ -82,7 +82,7 @@ def main():
 		
 	if ModelName == "gpt-4-vision-preview" and Image:
 		ChatGPT(Image)
-	elif ModelName == "gemini-vision-pro" and Image:
+	elif ModelName == "gemini-pro-vision" and Image:
 		GeminiAI(Image)
 if __name__ == "__main__":
     main()
