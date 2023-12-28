@@ -64,7 +64,7 @@ def GeminiAI(Image):
 	image = PIL.Image.open(Image)
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
-			response = model.generate_content(["Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text.", img], stream=True)
+			response = model.generate_content(["Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text.", image], stream=True)
 			response.resolve()
 			
 			st.write(to_markdown(response.text))
