@@ -9,6 +9,7 @@ import google.generativeai as genai
 
 from IPython.display import display
 from IPython.display import Markdown
+import imageio as iio
 
 import PIL.Image
 
@@ -31,7 +32,11 @@ st.write("---")
 ImgList = os.listdir("TestImages")
 ImgPath = st.selectbox("Images", ImgList)
 if ImgPath and st.checkbox("Use Example Images", value = False):
-        Image = "TestImages/" + ImgPath
+        ImgPath = "TestImages/" + ImgPath
+        Image = iio.imread(ImgPath)
+
+st.header("Or")
+st.write("---")
 
 Image = st.file_uploader("Upload your Image!!")
 if Image:
