@@ -43,7 +43,7 @@ if Image:
 	
 def ChatGPT(Image):
 	buffer = io.BytesIO(Image.read())
-        base64_encoded_image = base64.b64encode(buffer.read()).decode("utf-8")
+	base64_encoded_image = base64.b64encode(buffer.read()).decode("utf-8")
         data = f"data:image/jpeg;base64,{base64_encoded_image}"
 	APIKey = st.text_input("Enter your GPT-4 API Key")
         client = OpenAI(api_key = APIKey)
