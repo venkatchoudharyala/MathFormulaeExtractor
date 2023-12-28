@@ -31,13 +31,14 @@ st.write("---")
 
 Image = st.file_uploader("Upload your Image!!")
 
+'''
 st.subheader("Or you can use Test Images!!!")
 ImgList = os.listdir("TestImages")
 ImgPath = st.selectbox("Images", ImgList)
 if ImgPath and st.checkbox("Use Example Images", value = False):
         ImgPath = "TestImages/" + ImgPath
         Image = iio.imread(ImgPath)
-
+'''
 if Image:
         st.image(Image)
 
