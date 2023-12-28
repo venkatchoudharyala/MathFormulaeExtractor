@@ -29,16 +29,9 @@ def to_markdown(text):
 st.title("Math Formulae Extractor")
 st.write("---")
 
+st.subheader("Leverage the Power of Gemini and extract Maths Formulae from Images....")
 Image = st.file_uploader("Upload your Image!!")
 
-'''
-st.subheader("Or you can use Test Images!!!")
-ImgList = os.listdir("TestImages")
-ImgPath = st.selectbox("Images", ImgList)
-if ImgPath and st.checkbox("Use Example Images", value = False):
-        ImgPath = "TestImages/" + ImgPath
-        Image = iio.imread(ImgPath)
-'''
 if Image:
         st.image(Image)
 
