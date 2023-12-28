@@ -36,27 +36,28 @@ def ChatGPT(Image):
 	APIKey = st.text_input("Enter your GPT-4 API Key")
 	if APIKey:
 		client = OpenAI(api_key = APIKey)
-		with st.spinner("We'r Almost there!!!"):
-			response = client.chat.completions.create(
-				model="gpt-4-vision-preview",
-				messages=[
-				  {
-				    "role": "user",
-				    "content": [
-				      {"type": "text", "text": "Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text. Remember dont include any text other than formulae and put each formula line by line if it has multiple formulae."},
-				      {
-					"type": "image_url",
-					"image_url": {
-					"url": data,
-					},
-				      },
-				    ],
-				  }
-				],
-				max_tokens=300,
-			      )
-			st.markdown(response.choices[0].message.content)
-			btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "Files/New.tex")
+		if st.button("Extract"):
+			with st.spinner("We'r Almost there!!!"):
+				response = client.chat.completions.create(
+					model="gpt-4-vision-preview",
+					messages=[
+					  {
+					    "role": "user",
+					    "content": [
+					      {"type": "text", "text": "Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text. Remember dont include any text other than formulae and put each formula line by line if it has multiple formulae."},
+					      {
+						"type": "image_url",
+						"image_url": {
+						"url": data,
+						},
+					      },
+					    ],
+					  }
+					],
+					max_tokens=300,
+				      )
+				st.markdown(response.choices[0].message.content)
+				btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "Files/New.tex")
 
 def GeminiAI(Image):
 	genai.configure(api_key='AIzaSyBE1HLZuDQHbVz1C6MPD9FcvPbkeJqGrQU')
