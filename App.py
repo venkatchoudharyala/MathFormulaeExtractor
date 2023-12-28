@@ -64,7 +64,7 @@ def GeminiAI(Image):
 	image = PIL.Image.open(Image)
 	with st.spinner("We'r Almost there!!!"):
 		response = model.generate_content(["Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text.", img], stream=True)
-                response.resolve()
+		response.resolve()
 		
 		st.write(to_markdown(response.text))
 		btn = st.download_button(label = "Download File", data = response.text, file_name = "Files/New.tex")
@@ -79,7 +79,7 @@ def main():
 	Image = st.file_uploader("Upload your Image!!")
 	if Image:
 		st.image(Image)
-		S
+		
 	if ModelName == "gpt-4-vision-preview" and Image:
 		ChatGPT(Image)
 	elif ModelName == "gemini-vision-pro" and Image:
