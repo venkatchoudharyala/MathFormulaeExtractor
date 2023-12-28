@@ -32,7 +32,7 @@ def to_markdown(text):
 
 def encode_image(image_path):
         with open(image_path, "rb") as image_file:
-        return base64.b64encode(image_file.read()).decode('utf-8')
+                return base64.b64encode(image_file.read()).decode('utf-8')
     
 st.title("Math Formulae Extractor")
 st.write("Leverage the Power of Gemini and extract Maths Formulae from Images....")
