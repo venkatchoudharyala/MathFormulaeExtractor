@@ -40,30 +40,30 @@ def ChatGPT(Image):
 	if APIKey:
 		try:
 			client = OpenAI(api_key = APIKey)
+			if st.button("Extract"):
+				with st.spinner("We'r Almost there!!!"):
+					response = client.chat.completions.create(
+						model="gpt-4-vision-preview",
+						messages=[
+						  {
+						    "role": "user",
+						    "content": [
+						      {"type": "text", "text": Prompt},
+						      {
+							"type": "image_url",
+							"image_url": {
+							"url": data,
+							},
+						      },
+						    ],
+						  }
+						],
+						max_tokens=1000,
+					      )
+					st.code(response.choices[0].message.content)
+					btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "MathPixie.tex")
 		except openai.AuthenticationError:
 			st.error("Please enter Authorized API Key!!")
-		if st.button("Extract"):
-			with st.spinner("We'r Almost there!!!"):
-				response = client.chat.completions.create(
-					model="gpt-4-vision-preview",
-					messages=[
-					  {
-					    "role": "user",
-					    "content": [
-					      {"type": "text", "text": Prompt},
-					      {
-						"type": "image_url",
-						"image_url": {
-						"url": data,
-						},
-					      },
-					    ],
-					  }
-					],
-					max_tokens=1000,
-				      )
-				st.code(response.choices[0].message.content)
-				btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "MathPixie.tex")
 
 def GeminiAI(Image):
 	#"Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text."
