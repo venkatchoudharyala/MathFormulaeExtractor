@@ -38,7 +38,10 @@ def ChatGPT(Image):
 	data = f"data:image/jpeg;base64,{base64_encoded_image}"
 	APIKey = st.text_input("Enter your GPT-4 API Key")
 	if APIKey:
-		client = OpenAI(api_key = APIKey)
+		try:
+			client = OpenAI(api_key = APIKey)
+		except openai.AuthenticationError:
+			st.error("Please enter Authorized API Key!!")
 		if st.button("Extract"):
 			with st.spinner("We'r Almost there!!!"):
 				response = client.chat.completions.create(
