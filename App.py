@@ -80,7 +80,7 @@ def GeminiAI(Image):
 			response = model.generate_content([Prompt, image], stream=True)
 			response.resolve()
 			k = to_markdown(response.text)
-			if k != "No Math Formula found in the Image!!":
+			if k != "> No Math Formula found in the Image!!":
 				st.code(to_markdown(response.text))
 				btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "MathPixie.tex")
 			else:
