@@ -57,7 +57,7 @@ def ChatGPT(Image):
 					    ],
 					  }
 					],
-					max_tokens=300,
+					max_tokens=1000,
 				      )
 				st.code(response.choices[0].message.content)
 				btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "MathPixie.tex")
