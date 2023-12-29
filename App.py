@@ -66,7 +66,7 @@ def ChatGPT(Image):
 						st.code(response.choices[0].message.content)
 						btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "MathPixie.tex")
 					else:
-						st.error("Enter an Image with atleast one Math Formula")
+						st.error("Upload an Image with atleast one Math Formula!!")
 		except openai.AuthenticationError:
 			st.error("Please enter Authorized API Key!!")
 
@@ -84,7 +84,7 @@ def GeminiAI(Image):
 				st.code(to_markdown(response.text))
 				btn = st.download_button(label = "Download File", data = response.text, file_name = "MathPixie.tex")
 			else:
-				st.error("Enter an Image with atleast one Math Formula")
+				st.error("Upload an Image with atleast one Math Formula!!")
 
 def main():
 	st.title("Math Formulae Extractor")
