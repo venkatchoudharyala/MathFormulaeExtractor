@@ -59,7 +59,7 @@ def ChatGPT(Image):
 					],
 					max_tokens=300,
 				      )
-				st.markdown(response.choices[0].message.content)
+				st.code(response.choices[0].message.content)
 				btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "MathPixie.tex")
 
 def GeminiAI(Image):
