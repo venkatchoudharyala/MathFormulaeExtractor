@@ -59,7 +59,7 @@ def ChatGPT(Image):
 					],
 					max_tokens=1000,
 				      )
-				st.latex(response.choices[0].message.content)
+				st.code(response.choices[0].message.content)
 				btn = st.download_button(label = "Download File", data = response.choices[0].message.content, file_name = "MathPixie.tex")
 
 def GeminiAI(Image):
@@ -71,7 +71,7 @@ def GeminiAI(Image):
 		with st.spinner("We'r Almost there!!!"):
 			response = model.generate_content([Prompt, image], stream=True)
 			response.resolve()
-			st.latex(to_markdown(response.text))
+			st.code(to_markdown(response.text))
 			btn = st.download_button(label = "Download File", data = response.text, file_name = "MathPixie.tex")
 
 def main():
