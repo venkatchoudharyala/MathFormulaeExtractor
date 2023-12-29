@@ -11,6 +11,7 @@ from IPython.display import display
 from IPython.display import Markdown
 
 from openai import OpenAI
+import openai
 
 import PIL.Image
 import base64
