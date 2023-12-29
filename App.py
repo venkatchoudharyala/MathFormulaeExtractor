@@ -30,7 +30,7 @@ def to_markdown(text):
         text = text.replace('•', '  *')
         return textwrap.indent(text, '> ', predicate=lambda _: True)
 
-Prompt = "From this Given Image, please extract Mathematical formulae one by one (Don't extract any textual matter) and convert them into LaTeX code (you should not generate any extra content other than formulae). If no Math formula found in the image just return "No Math Formula found in the Image!!". Remember just generate the Math Formulae in LaTeX code, dont even include title tag for ur reponse!!"
+Prompt = "From this Given Image, please extract Mathematical formulae one by one (Don't extract any textual matter) and convert them into LaTeX code (you should not generate any extra content other than formulae). If no Math formula found in the image just return ==> No Math Formula found in the Image!!. Remember just generate the Math Formulae in LaTeX code, dont even include title tag for ur reponse!!"
 	
 def ChatGPT(Image):
 	#"Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text. Remember dont include any text other than formulae and put each formula line by line if it has multiple formulae."
