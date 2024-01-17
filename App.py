@@ -89,12 +89,8 @@ def GeminiAI(Image):
 			else:
 				st.error("Upload an Image with atleast one Math Formula!!")
 
-def Sesame(Image):
+def Sesame(Image, processor, model):
 	if st.button("Extract"):
-		with st.spinner("Loading the Model"):
-			image = PIL.Image.open(Image).convert("RGB")
-			processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
-			model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
 		with st.spinner("We'r Almost there!!!"):
 			pixel_values = processor(images=image, return_tensors="pt").pixel_values
 		
@@ -108,8 +104,11 @@ def main():
 	st.write("Leverage the Power of Gemini, GPT-4 and extract Maths Formulae from Images....")
 	st.write("---")
 
-	
-	
+	with st.spinner("Loading the Model"):
+		image = PIL.Image.open(Image).convert("RGB")
+		processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
+		model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
+
 	ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "gpt-4-vision-preview", "Sesame"))
 	
 	Image = st.file_uploader("Upload your Image!!")
@@ -121,6 +120,6 @@ def main():
 	elif ModelName == "gemini-pro-vision" and Image:
 		GeminiAI(Image)
 	elif ModelName == "Sesame" and Image:
-		Sesame(Image)
+		Sesame(Image, processor, model)
 if __name__ == "__main__":
     main()
