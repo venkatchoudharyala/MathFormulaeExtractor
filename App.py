@@ -117,7 +117,7 @@ def main():
 		ChatGPT(Image)
 	elif ModelName == "gemini-pro-vision" and Image:
 		GeminiAI(Image)
-	else:
+	elif ModelName == "Sesame" and Image:
 		Sesame(Image, processor, model)
 if __name__ == "__main__":
     main()
