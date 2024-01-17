@@ -92,7 +92,7 @@ def GeminiAI(Image):
 def Sesame(Image):
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
-			image = PIL.Image.open(Image)
+			image = PIL.Image.open(Image).convert("RGB")
 			processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
 			model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
 			pixel_values = processor(images=image, return_tensors="pt").pixel_values
