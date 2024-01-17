@@ -92,7 +92,7 @@ def GeminiAI(Image):
 def Sesame(Image, processor, model):
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
-			pixel_values = processor(images=image, return_tensors="pt").pixel_values
+			pixel_values = processor(images=Image, return_tensors="pt").pixel_values
 		
 			generated_ids = model.generate(pixel_values)
 			generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
