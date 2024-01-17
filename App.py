@@ -20,9 +20,6 @@ import io
 from transformers import TrOCRProcessor
 from transformers import VisionEncoderDecoderModel
 
-processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
-model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
-
 hide_st_style = """
                 <style>
                 header {visibility: hidden;}
@@ -93,6 +90,9 @@ def GeminiAI(Image):
 				st.error("Upload an Image with atleast one Math Formula!!")
 
 def Sesame(Image):
+	processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
+	#model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
+	model = VisionEncoderDecoderModel.from_pretrained("TrOcr")
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
 			image = PIL.Image.open(Image).convert("RGB")
