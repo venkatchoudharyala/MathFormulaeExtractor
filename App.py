@@ -17,6 +17,9 @@ import PIL.Image
 import base64
 import io
 
+from transformers import TrOCRProcessor
+from transformers import VisionEncoderDecoderModel
+
 hide_st_style = """
                 <style>
                 header {visibility: hidden;}
@@ -86,12 +89,25 @@ def GeminiAI(Image):
 			else:
 				st.error("Upload an Image with atleast one Math Formula!!")
 
+def Sesame(Image, processor, model):
+	if st.button("Extract"):
+		with st.spinner("We'r Almost there!!!"):
+			pixel_values = processor(images=image, return_tensors="pt").pixel_values
+		
+			generated_ids = model.generate(pixel_values)
+			generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
+			
+			st.code(generated_text)
+
 def main():
 	st.title("Math Formulae Extractor")
 	st.write("Leverage the Power of Gemini, GPT-4 and extract Maths Formulae from Images....")
 	st.write("---")
+
+	processor = TrOCRProcessor.from_pretrained("microsoft/trocr-large-handwritten")
+	model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
 	
-	ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "gpt-4-vision-preview"))
+	ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "gpt-4-vision-preview", "Sesame"))
 	
 	Image = st.file_uploader("Upload your Image!!")
 	if Image:
@@ -101,5 +117,7 @@ def main():
 		ChatGPT(Image)
 	elif ModelName == "gemini-pro-vision" and Image:
 		GeminiAI(Image)
+	else:
+		Sesame(Image, processor, model)
 if __name__ == "__main__":
     main()
