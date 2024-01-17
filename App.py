@@ -89,7 +89,7 @@ def GeminiAI(Image):
 			else:
 				st.error("Upload an Image with atleast one Math Formula!!")
 
-def Sesame(Image, processor, model):
+def Sesame(Image):
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
 			image = PIL.Image.open(Image)
@@ -120,6 +120,6 @@ def main():
 	elif ModelName == "gemini-pro-vision" and Image:
 		GeminiAI(Image)
 	elif ModelName == "Sesame" and Image:
-		Sesame(Image, processor, model)
+		Sesame(Image)
 if __name__ == "__main__":
     main()
