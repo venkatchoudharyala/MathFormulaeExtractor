@@ -104,7 +104,7 @@ def main():
 	st.write("Leverage the Power of Gemini, GPT-4 and extract Maths Formulae from Images....")
 	st.write("---")
 
-	processor = TrOCRProcessor.from_pretrained("microsoft/trocr-large-handwritten")
+	processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
 	model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
 	
 	ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "gpt-4-vision-preview", "Sesame"))
