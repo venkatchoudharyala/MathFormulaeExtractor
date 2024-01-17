@@ -72,7 +72,7 @@ def ChatGPT(Image):
 
 def GeminiAI(Image):
 	#"Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text."
-	genai.configure(api_key='AIzaSyBE1HLZuDQHbVz1C6MPD9FcvPbkeJqGrQU')
+	genai.configure(api_key='AIzaSyB8ayw3zz3HuZDPYJuyS4rYUcnj8cH28XI')
 	model = genai.GenerativeModel('gemini-pro-vision')
 	image = PIL.Image.open(Image)
 	if st.button("Extract"):
