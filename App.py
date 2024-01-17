@@ -20,6 +20,9 @@ import io
 from transformers import TrOCRProcessor
 from transformers import VisionEncoderDecoderModel
 
+processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
+model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
+
 hide_st_style = """
                 <style>
                 header {visibility: hidden;}
@@ -89,7 +92,7 @@ def GeminiAI(Image):
 			else:
 				st.error("Upload an Image with atleast one Math Formula!!")
 
-def Sesame(Image, processor, model):
+def Sesame(Image):
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
 			image = PIL.Image.open(Image).convert("RGB")
@@ -105,10 +108,6 @@ def main():
 	st.write("Leverage the Power of Gemini, GPT-4 and extract Maths Formulae from Images....")
 	st.write("---")
 
-	with st.spinner("Loading the Model"):
-		processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
-		model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
-
 	ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "gpt-4-vision-preview", "Sesame"))
 	
 	Image = st.file_uploader("Upload your Image!!")
@@ -120,6 +119,6 @@ def main():
 	elif ModelName == "gemini-pro-vision" and Image:
 		GeminiAI(Image)
 	elif ModelName == "Sesame" and Image:
-		Sesame(Image, processor, model)
+		Sesame(Image)
 if __name__ == "__main__":
     main()
