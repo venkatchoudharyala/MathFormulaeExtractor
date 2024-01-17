@@ -92,7 +92,10 @@ def GeminiAI(Image):
 def Sesame(Image, processor, model):
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
-			pixel_values = processor(images=Image, return_tensors="pt").pixel_values
+			image = PIL.Image.open(Image)
+			processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
+			model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
+			pixel_values = processor(images=image, return_tensors="pt").pixel_values
 		
 			generated_ids = model.generate(pixel_values)
 			generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
@@ -104,8 +107,7 @@ def main():
 	st.write("Leverage the Power of Gemini, GPT-4 and extract Maths Formulae from Images....")
 	st.write("---")
 
-	processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
-	model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
+	
 	
 	ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "gpt-4-vision-preview", "Sesame"))
 	
