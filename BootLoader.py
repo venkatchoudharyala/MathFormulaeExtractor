@@ -13,11 +13,11 @@ def BootLoader():
 	ProPath = "Processor/"
 	ModelPath = "Sesame/"
 	if not CheckDir(ProPath):
-		CreateDir(ProPath)
+		createDir(ProPath)
 		processor = TrOCRProcessor.from_pretrained("microsoft/trocr-base-handwritten")
 		processor.save_pretrained(ProPath)
 	if not CheckDir(ModelPath):
-		counter = CreateDir(ModelPath, counter)
+		counter = createDir(ModelPath, counter)
 		model = VisionEncoderDecoderModel.from_pretrained("CodeKapital/SESAME")
 		model.save_pretrained(ModelPath)
 		
