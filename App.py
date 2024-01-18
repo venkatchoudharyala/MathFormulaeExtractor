@@ -20,7 +20,7 @@ import io
 from transformers import TrOCRProcessor
 from transformers import VisionEncoderDecoderModel
 
-from BootLoader import *
+from BootLoader import CreateDir, BootLoader
 
 hide_st_style = """
                 <style>
