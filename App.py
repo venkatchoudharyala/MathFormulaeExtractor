@@ -94,8 +94,8 @@ def GeminiAI(Image):
 def Sesame(Image):
 	with st.spinner("Loading Files"):
 		BootLoader()
-	processor = TrOCRProcessor.from_pretrained("")
-	model = VisionEncoderDecoderModel.from_pretrained("")
+	processor = TrOCRProcessor.from_pretrained("Processor")
+	model = VisionEncoderDecoderModel.from_pretrained("Sesame")
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
 			image = PIL.Image.open(Image).convert("RGB")
