@@ -106,9 +106,6 @@ def Sesame(Image):
 			
 			st.code(generated_text)
 
-def createDir(Path):
-	os.makedirs(Path, exist_ok=True)
-
 def main():
 	st.title("Math Formulae Extractor")
 	st.write("Leverage the Power of Gemini, GPT-4 and extract Maths Formulae from Images....")
