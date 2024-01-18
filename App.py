@@ -20,7 +20,7 @@ import io
 from transformers import TrOCRProcessor
 from transformers import VisionEncoderDecoderModel
 
-from BootLoader import CreateDir, BootLoader
+from BootLoader import BootLoader
 
 hide_st_style = """
                 <style>
@@ -105,6 +105,9 @@ def Sesame(Image):
 			generated_text = processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
 			
 			st.code(generated_text)
+
+def createDir(Path):
+	os.makedirs(Path, exist_ok=True)
 
 def main():
 	st.title("Math Formulae Extractor")
