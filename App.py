@@ -124,10 +124,10 @@ def main():
 		#if canvas_result.image_data is not None:
 		#st.image(canvas_result.image_data)
 		if st.button("Proceed"):
-			data = canvas_result.image_data
-			ImgFile = "Temp.png"
-			imageio.imwrite(ImgFile, data.astype(np.uint8))
-			Image = data.astype(np.uint8)
+			Image = canvas_result.image_data
+			#ImgFile = "Temp.png"
+			#imageio.imwrite(ImgFile, data.astype(np.uint8))
+			#Image = data.astype(np.uint8)
 			Image.tobytes()
 				
 			if ModelName == "gpt-4-vision-preview":
