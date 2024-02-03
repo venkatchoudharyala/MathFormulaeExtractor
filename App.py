@@ -79,12 +79,9 @@ def GeminiAI(Image):
 	#"Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text."
 	genai.configure(api_key='AIzaSyB8ayw3zz3HuZDPYJuyS4rYUcnj8cH28XI')
 	model = genai.GenerativeModel('gemini-pro-vision')
-	try:
-		image = PIL.Image.open(Image)
-		st.image(image)
-	except AttributeError:
-		st.write("HI")
-		image = Image.tobytes()
+	image = PIL.Image.open(Image)
+	#if st.button("Extract"):
+	with st.spinner("We'r Almost there!!!"):
 		response = model.generate_content([Prompt, image], stream=True)
 		response.resolve()
 		k = to_markdown(response.text)
@@ -93,17 +90,6 @@ def GeminiAI(Image):
 			btn = st.download_button(label = "Download File", data = response.text, file_name = "MathPixie.tex")
 		else:
 			st.error("Upload an Image with atleast one Math Formula!!")
-
-	if st.button("Extract"):
-		with st.spinner("We'r Almost there!!!"):
-			response = model.generate_content([Prompt, image], stream=True)
-			response.resolve()
-			k = to_markdown(response.text)
-			if k != ">  No Math Formula found in the Image!!":
-				st.code(to_markdown(response.text))
-				btn = st.download_button(label = "Download File", data = response.text, file_name = "MathPixie.tex")
-			else:
-				st.error("Upload an Image with atleast one Math Formula!!")
 
 def main():
 	st.title("Math Formulae Extractor")
