@@ -129,9 +129,9 @@ def main():
 			#imageio.imwrite(ImgFile, data.astype(np.uint8))
 			Image = data.astype(np.uint8)
 				
-			if ModelName == "gpt-4-vision-preview" and Image:
+			if ModelName == "gpt-4-vision-preview":
 				ChatGPT(Image)
-			elif ModelName == "gemini-pro-vision" and Image:
+			elif ModelName == "gemini-pro-vision":
 				GeminiAI(Image)
 				
 	with tab2:
