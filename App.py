@@ -127,7 +127,7 @@ def main():
 			data = canvas_result.image_data
 			ImgFile = "Temp.png"
 			imageio.imwrite(ImgFile, data.astype(np.uint8))
-			st.image(ImgFile)
+			Image = st.image(ImgFile)
 				
 			if ModelName == "gpt-4-vision-preview" and Image:
 				ChatGPT(Image)
