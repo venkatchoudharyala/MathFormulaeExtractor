@@ -17,6 +17,9 @@ import PIL.Image
 import base64
 import io
 
+from streamlit_drawable_canvas import st_canvas
+import imageio
+
 hide_st_style = """
                 <style>
                 header {visibility: hidden;}
@@ -93,7 +96,38 @@ def main():
 	
 	ModelName = st.selectbox("Select a Model", ("gemini-pro-vision", "gpt-4-vision-preview"))
 	
-	Image = st.file_uploader("Upload your Image!!")
+	tab1, tab2 = st.tabs(["Draw Yourself", "Upload Image"])
+	with tab1:
+		drawing_mode = "freedraw"
+		stroke_width = 3
+		stroke_color = "#000000"
+		bg_color = "#eee"
+		realtime_update = True
+
+		canvas_result = st_canvas(
+		    fill_color = "rgba(255, 165, 0, 0.3)",  # Fixed fill color with some opacity
+		    stroke_width = stroke_width,
+		    stroke_color = stroke_color,
+		    background_color = bg_color,
+		    background_image = None,
+		    update_streamlit = realtime_update,
+		    height = 150, 
+		    width = 1000,
+		    drawing_mode = drawing_mode,
+		    point_display_radius = 0,
+		    key = "canvas",
+		)
+		
+		# Image display
+		if canvas_result.image_data is not None:
+			st.image(canvas_result.image_data)
+			if st.button("Save and Proceed"):
+				Image = canvas_result.image_data
+				#ImgFile = "Images/" + Details["Name"] + "/" + CheckPoint + ".png"
+				#imageio.imwrite(ImgFile, data.astype(np.uint8))
+				
+	with tab2:
+		Image = st.file_uploader("Upload your Image!!")
 	if Image:
 		st.image(Image)
 		
