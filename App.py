@@ -129,7 +129,7 @@ def main():
 			#imageio.imwrite(ImgFile, data.astype(np.uint8))
 			#Image = data.astype(np.uint8)
 			Image.tobytes()
-			st.write(Image)
+			st.write(Image.tobytes())
 				
 			if ModelName == "gpt-4-vision-preview":
 				ChatGPT(Image)
