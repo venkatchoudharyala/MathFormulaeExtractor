@@ -81,7 +81,7 @@ def GeminiAI(Image):
 	model = genai.GenerativeModel('gemini-pro-vision')
 	try:
 		image = PIL.Image.open(Image)
-	except AttributeError:
+	except ValueError:
 		image = Image
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
