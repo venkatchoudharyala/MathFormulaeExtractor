@@ -127,16 +127,11 @@ def main():
 			ImgFile = str(ts) + ".png"
 			imageio.imwrite(ImgFile, data.astype(np.uint8))
 			Image = ImgFile
-				
-			if ModelName == "gpt-4-vision-preview":
-				ChatGPT(Image)
-			elif ModelName == "gemini-pro-vision":
-				GeminiAI(Image)
+			GeminiAI(Image)
 				
 	with tab2:
 		Image = st.file_uploader("Upload your Image!!")
 		if Image:
-			st.write(Image)
 			st.image(Image)
 			
 		if ModelName == "gpt-4-vision-preview" and Image:
