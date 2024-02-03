@@ -82,7 +82,6 @@ def GeminiAI(Image):
 	image = PIL.Image.open(Image)
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
-			st.write("!")
 			response = model.generate_content([Prompt, image], stream=True)
 			response.resolve()
 			k = to_markdown(response.text)
@@ -127,7 +126,7 @@ def main():
 		if st.button("Proceed"):
 			data = canvas_result.image_data
 			ImgFile = "Temp.png"
-			#imageio.imwrite(ImgFile, data.astype(np.uint8))
+			imageio.imwrite(ImgFile, data.astype(np.uint8))
 			Image = data.astype(np.uint8)
 				
 			if ModelName == "gpt-4-vision-preview":
