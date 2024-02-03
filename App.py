@@ -125,7 +125,7 @@ def main():
 		data = canvas_result.image_data
 		if st.button("Proceed"):
 			ImgFile = "Temp.png"
-			imageio.imwrite(ImgFile, (data.astype(np.uint8)).tobytes())
+			imageio.imwrite(ImgFile, data.astype(np.uint8))
 			Image = ImgFile
 				
 			if ModelName == "gpt-4-vision-preview":
