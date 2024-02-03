@@ -2,3 +2,5 @@ google-generativeai
 pathlib
 ipython
 openai
+streamlit-drawable-canvas
+imageio
