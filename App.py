@@ -80,6 +80,7 @@ def GeminiAI(Image):
 	genai.configure(api_key='AIzaSyB8ayw3zz3HuZDPYJuyS4rYUcnj8cH28XI')
 	model = genai.GenerativeModel('gemini-pro-vision')
 	image = PIL.Image.open(Image)
+	st.image(image)
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
 			response = model.generate_content([Prompt, image], stream=True)
