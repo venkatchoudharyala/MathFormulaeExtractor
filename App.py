@@ -81,8 +81,9 @@ def GeminiAI(Image):
 	model = genai.GenerativeModel('gemini-pro-vision')
 	try:
 		image = PIL.Image.open(Image)
+		st.image(image)
 	except AttributeError:
-		sts.write("HI")
+		st.write("HI")
 		image = Image.tobytes()
 		response = model.generate_content([Prompt, image], stream=True)
 		response.resolve()
