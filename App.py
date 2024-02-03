@@ -79,7 +79,10 @@ def GeminiAI(Image):
 	#"Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text."
 	genai.configure(api_key='AIzaSyB8ayw3zz3HuZDPYJuyS4rYUcnj8cH28XI')
 	model = genai.GenerativeModel('gemini-pro-vision')
-	image = PIL.Image.open(Image)
+	try:
+		image = PIL.Image.open(Image)
+	except AttributeError:
+		image = Image
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
 			response = model.generate_content([Prompt, image], stream=True)
@@ -125,10 +128,10 @@ def main():
 		#st.image(canvas_result.image_data)
 		if st.button("Proceed"):
 			data = canvas_result.image_data
-			ImgFile = "Temp.png"
-			imageio.imwrite(ImgFile, (data.astype(np.uint8)).tobytes())
-			#Image = data.astype(np.uint8)
-			Image = ImgFile
+			#ImgFile = "Temp.png"
+			#imageio.imwrite(ImgFile, (data.astype(np.uint8)).tobytes())
+			Image = data.astype(np.uint8)
+			Image = Image.tobytes()
 				
 			if ModelName == "gpt-4-vision-preview":
 				ChatGPT(Image)
