@@ -79,6 +79,7 @@ def GeminiAI(Image):
 	#"Hey Gemini, Extract Mathematical formulae from this Image and convert that into LaTeX Text."
 	genai.configure(api_key='AIzaSyB8ayw3zz3HuZDPYJuyS4rYUcnj8cH28XI')
 	model = genai.GenerativeModel('gemini-pro-vision')
+	st.write(Image)
 	image = PIL.Image.open(Image)
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
