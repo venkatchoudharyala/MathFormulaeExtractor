@@ -82,7 +82,7 @@ def GeminiAI(Image):
 	image = PIL.Image.open(Image)
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
-			print("1")
+			st.write("!")
 			response = model.generate_content([Prompt, image], stream=True)
 			response.resolve()
 			k = to_markdown(response.text)
