@@ -83,16 +83,16 @@ def GeminiAI(Image):
 		image = PIL.Image.open(Image)
 	except AttributeError:
 		image = Image.tobytes()
-	if st.button("Extract"):
-		with st.spinner("We'r Almost there!!!"):
-			response = model.generate_content([Prompt, image], stream=True)
-			response.resolve()
-			k = to_markdown(response.text)
-			if k != ">  No Math Formula found in the Image!!":
-				st.code(to_markdown(response.text))
-				btn = st.download_button(label = "Download File", data = response.text, file_name = "MathPixie.tex")
-			else:
-				st.error("Upload an Image with atleast one Math Formula!!")
+	#if st.button("Extract"):
+	with st.spinner("We'r Almost there!!!"):
+		response = model.generate_content([Prompt, image], stream=True)
+		response.resolve()
+		k = to_markdown(response.text)
+		if k != ">  No Math Formula found in the Image!!":
+			st.code(to_markdown(response.text))
+			btn = st.download_button(label = "Download File", data = response.text, file_name = "MathPixie.tex")
+		else:
+			st.error("Upload an Image with atleast one Math Formula!!")
 
 def main():
 	st.title("Math Formulae Extractor")
