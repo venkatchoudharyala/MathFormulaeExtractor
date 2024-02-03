@@ -123,7 +123,7 @@ def main():
 		    key = "canvas",
 		)
 		data = canvas_result.image_data
-		if button("Proceed)
+		if st.button("Proceed)
 			ImgFile = "Temp.png"
 			imageio.imwrite(ImgFile, (data.astype(np.uint8)).tobytes())
 			Image = ImgFile
