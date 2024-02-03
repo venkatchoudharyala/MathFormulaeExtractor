@@ -132,7 +132,7 @@ def main():
 			if ModelName == "gpt-4-vision-preview":
 				ChatGPT(Image)
 			elif ModelName == "gemini-pro-vision":
-				GeminiAI(Image)
+				GeminiAI(ImgFile)
 				
 	with tab2:
 		Image = st.file_uploader("Upload your Image!!")
