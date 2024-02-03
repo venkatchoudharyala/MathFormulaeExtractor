@@ -122,14 +122,10 @@ def main():
 		    point_display_radius = 0,
 		    key = "canvas",
 		)
-		
-		# Image display
-		#if canvas_result.image_data is not None:
-		#st.image(canvas_result.image_data)
 		data = canvas_result.image_data
-		#ImgFile = "Temp.png"
-		#imageio.imwrite(ImgFile, (data.astype(np.uint8)).tobytes())
-		Image = data.astype(np.uint8)
+		ImgFile = "Temp.png"
+		imageio.imwrite(ImgFile, (data.astype(np.uint8)).tobytes())
+		Image = ImgFile
 			
 		if ModelName == "gpt-4-vision-preview":
 			ChatGPT(Image)
