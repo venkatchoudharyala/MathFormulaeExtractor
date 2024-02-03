@@ -83,16 +83,16 @@ def GeminiAI(Image):
 		image = PIL.Image.open(Image)
 	except AttributeError:
 		image = Image.tobytes()
-	#if st.button("Extract"):
-	with st.spinner("We'r Almost there!!!"):
-		response = model.generate_content([Prompt, image], stream=True)
-		response.resolve()
-		k = to_markdown(response.text)
-		if k != ">  No Math Formula found in the Image!!":
-			st.code(to_markdown(response.text))
-			btn = st.download_button(label = "Download File", data = response.text, file_name = "MathPixie.tex")
-		else:
-			st.error("Upload an Image with atleast one Math Formula!!")
+	if st.button("Extract"):
+		with st.spinner("We'r Almost there!!!"):
+			response = model.generate_content([Prompt, image], stream=True)
+			response.resolve()
+			k = to_markdown(response.text)
+			if k != ">  No Math Formula found in the Image!!":
+				st.code(to_markdown(response.text))
+				btn = st.download_button(label = "Download File", data = response.text, file_name = "MathPixie.tex")
+			else:
+				st.error("Upload an Image with atleast one Math Formula!!")
 
 def main():
 	st.title("Math Formulae Extractor")
@@ -126,16 +126,15 @@ def main():
 		# Image display
 		#if canvas_result.image_data is not None:
 		#st.image(canvas_result.image_data)
-		if st.button("Proceed"):
-			data = canvas_result.image_data
-			#ImgFile = "Temp.png"
-			#imageio.imwrite(ImgFile, (data.astype(np.uint8)).tobytes())
-			Image = data.astype(np.uint8)
-				
-			if ModelName == "gpt-4-vision-preview":
-				ChatGPT(Image)
-			elif ModelName == "gemini-pro-vision":
-				GeminiAI(Image)
+		data = canvas_result.image_data
+		#ImgFile = "Temp.png"
+		#imageio.imwrite(ImgFile, (data.astype(np.uint8)).tobytes())
+		Image = data.astype(np.uint8)
+			
+		if ModelName == "gpt-4-vision-preview":
+			ChatGPT(Image)
+		elif ModelName == "gemini-pro-vision":
+			GeminiAI(Image)
 				
 	with tab2:
 		Image = st.file_uploader("Upload your Image!!")
