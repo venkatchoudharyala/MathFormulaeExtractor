@@ -83,6 +83,7 @@ def GeminiAI(Image):
 		image = PIL.Image.open(Image)
 	except ValueError:
 		image = Image
+	st.image(image)
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
 			response = model.generate_content([Prompt, image], stream=True)
