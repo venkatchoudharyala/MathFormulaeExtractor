@@ -126,8 +126,8 @@ def main():
 		if st.button("Proceed"):
 			data = canvas_result.image_data
 			ImgFile = "Temp.png"
-			imageio.imwrite(ImgFile, data.astype(np.uint8))
-			Image = st.image(ImgFile)
+			#imageio.imwrite(ImgFile, data.astype(np.uint8))
+			Image = data.astype(np.uint8)
 				
 			if ModelName == "gpt-4-vision-preview" and Image:
 				ChatGPT(Image)
