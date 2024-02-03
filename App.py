@@ -82,7 +82,7 @@ def GeminiAI(Image):
 	try:
 		image = PIL.Image.open(Image)
 	except ValueError:
-		image = Image
+		image = Image.tobytes()
 	st.image(image)
 	if st.button("Extract"):
 		with st.spinner("We'r Almost there!!!"):
@@ -132,7 +132,6 @@ def main():
 			#ImgFile = "Temp.png"
 			#imageio.imwrite(ImgFile, (data.astype(np.uint8)).tobytes())
 			Image = data.astype(np.uint8)
-			Image = Image.tobytes()
 				
 			if ModelName == "gpt-4-vision-preview":
 				ChatGPT(Image)
