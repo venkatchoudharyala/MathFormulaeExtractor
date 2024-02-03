@@ -82,6 +82,7 @@ def GeminiAI(Image):
 	try:
 		image = PIL.Image.open(Image)
 	except AttributeError:
+		sts.write("HI")
 		image = Image.tobytes()
 		response = model.generate_content([Prompt, image], stream=True)
 		response.resolve()
