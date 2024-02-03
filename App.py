@@ -125,13 +125,13 @@ def main():
 			Image = canvas_result.image_data
 			#ImgFile = "Images/" + Details["Name"] + "/" + CheckPoint + ".png"
 			#imageio.imwrite(ImgFile, data.astype(np.uint8))
-		if Image:
-			st.image(Image)
-			
-		if ModelName == "gpt-4-vision-preview" and Image:
-			ChatGPT(Image)
-		elif ModelName == "gemini-pro-vision" and Image:
-			GeminiAI(Image)
+			if Image:
+				st.image(Image)
+				
+			if ModelName == "gpt-4-vision-preview" and Image:
+				ChatGPT(Image)
+			elif ModelName == "gemini-pro-vision" and Image:
+				GeminiAI(Image)
 				
 	with tab2:
 		Image = st.file_uploader("Upload your Image!!")
