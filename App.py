@@ -21,6 +21,7 @@ from streamlit_drawable_canvas import st_canvas
 import imageio
 
 import numpy as np
+import datetime;
 
 hide_st_style = """
                 <style>
@@ -121,7 +122,9 @@ def main():
 		)
 		data = canvas_result.image_data
 		if st.button("Proceed"):
-			ImgFile = "Temp.png"
+			ct = datetime.datetime.now()
+			ts = ct.timestamp()
+			ImgFile = str(ts) + ".png"
 			imageio.imwrite(ImgFile, data.astype(np.uint8))
 			Image = ImgFile
 				
