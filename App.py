@@ -120,8 +120,8 @@ def main():
 		
 		# Image display
 		if canvas_result.image_data is not None:
-			st.image(canvas_result.image_data)
-			if st.button("Save and Proceed"):
+			#st.image(canvas_result.image_data)
+			if st.button("Proceed"):
 				Image = canvas_result.image_data
 				#ImgFile = "Images/" + Details["Name"] + "/" + CheckPoint + ".png"
 				#imageio.imwrite(ImgFile, data.astype(np.uint8))
