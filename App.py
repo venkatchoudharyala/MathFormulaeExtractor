@@ -135,6 +135,7 @@ def main():
 	with tab2:
 		Image = st.file_uploader("Upload your Image!!")
 		if Image:
+			st.write(Image)
 			st.image(Image)
 			
 		if ModelName == "gpt-4-vision-preview" and Image:
