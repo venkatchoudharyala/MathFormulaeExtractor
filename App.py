@@ -20,6 +20,8 @@ import io
 from streamlit_drawable_canvas import st_canvas
 import imageio
 
+import numpy as np
+
 hide_st_style = """
                 <style>
                 header {visibility: hidden;}
